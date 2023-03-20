@@ -1,2 +1,2 @@
 # newsProject
-do not read me)
+if u can, fix my bugs 
