@@ -8,17 +8,8 @@ let categoryes = document.querySelectorAll('#select option')
 let searchBlock = document.querySelector('.search')
 let search = document.querySelector('.search')
 let searchButton = document.querySelector('.searchButton')
-
-
-const clearInput = () => {
-    const input = document.getElementsByTagName("input")[0];
-    input.value = "";
-  }
-  
-  const clearBtn = document.getElementById("clear-btn");
-  clearBtn.addEventListener("click", clearInput);
-  
-
+let i = document.querySelector('.fa-search')
+console.log(i);
 
 function createCard(text, art, newsurl, img) {
 
@@ -49,6 +40,7 @@ function createCard(text, art, newsurl, img) {
     let cardA = document.createElement('a');
     cardA.classList.add('btn');
     cardA.classList.add('btn-primary');
+    cardA.classList.add('newsBtn');
     cardA.innerText = 'Read All';
     cardA.href = newsurl;
     cardA.target = "_blank";
@@ -76,10 +68,6 @@ function createCard(text, art, newsurl, img) {
 
 }
 
-function tosearch() {
-    let searchValue = search.value;
-}
-
 
 function getCat() {
     console.clear();
@@ -97,7 +85,6 @@ function getCat() {
     apikey = '02d2c091ba46a08fdae41d771512886c';
     url = 'https://gnews.io/api/v4/top-headlines?category=' + category + '&lang=en&country=us&max=' + kol + '&apikey=' + apikey;
 
-    let searchVal = search.value;
 
 
     fetch(url)
@@ -123,7 +110,46 @@ function getCat() {
 }
 
 
+function searchFun() {
+    let input = document.querySelector('input');
+    let val = input.value;
+    let allCategs = ['general', 'world', 'nation', 'business', 'technology', 'entertainment', 'sports', 'science', 'health'];
+    let i = 0;
+    let timerGet = setInterval(() => {
+        /* url = 'https://gnews.io/api/v4/top-headlines?category=' + allCategs[item] + '&lang=en&country=us&max=10&apikey=02d2c091ba46a08fdae41d771512886c';
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                articles = data.articles;
+
+                for (i = 0; i < articles.length; i++) {
+                    
+                    let description = articles[i]['description'];
+                    if (description.includes(val)) {
+                        let title = articles[i]['title'];
+                        console.log(title);
+                        let description = articles[i]['description'];
+                        console.log(description);
+                        let newsurl = articles[i]['url'];
+                        console.log(newsurl);
+                        let img = articles[i]['image'];
+                        console.log(img);
+                        createCard(description, title, newsurl, img);
+                    }
+                }
+            }); */
+            console.log(i);
+            i++;
+            if(i == allCategs.length + 1){
+                clearInterval(timerGet);
+            }
+        }, 1000)
+    }
 
 
 
+
+i.addEventListener('click', searchFun)
 searchButton.addEventListener('click', getCat)
